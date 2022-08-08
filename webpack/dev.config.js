@@ -49,11 +49,13 @@ module.exports = webpackMerge(webpackCommon, {
               outputStyle: 'expanded',
               sourceMap: true,
               sourceMapContents: true
-            }
+            },
+            
           }
         ]
       }
-    ]
+    ],
+    
 
   },
 
