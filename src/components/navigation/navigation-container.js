@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default class NavgationComponent extends Component {
@@ -7,22 +7,35 @@ export default class NavgationComponent extends Component {
         super();
     }
 
-    
+
 
     render() {
         return (
-            <div>
-                <NavLink exact to="/"activeClassName='nav-link-active'>
-                    Home
-                    </NavLink>
-                    
-                <NavLink to="/about-me" activeClassName='nav-link-active'>About</NavLink>
-                    
-                <NavLink to="/contact" activeClassName='nav-link-active'>Contact</NavLink>
+            <div className='nav-wrapper'>
+                <div className='left-side'>
+                    <div className='nav-link-wrapper'>
+                        <NavLink exact to="/" activeClassName='nav-link-active'>
+                            Home
+                        </NavLink>
+                    </div>
 
-                <NavLink to="/blog" activeClassName='nav-link-active'>Blog</NavLink>
+                    <div className='nav-link-wrapper'>
+                        <NavLink to="/about-me" activeClassName='nav-link-active'>About</NavLink>
+                    </div>
+
+                    <div className='nav-link-wrapper'>
+                        <NavLink to="/contact" activeClassName='nav-link-active'>Contact</NavLink>
+                    </div>
+
+                    <div className='nav-link-wrapper'>
+                        <NavLink to="/blog" activeClassName='nav-link-active'>Blog</NavLink>
+                    </div>
                     
-             {false ? <button>Add Blog</button> : null}  
+                </div>
+
+                <div className='right-side'>
+                    CRISTINA BORS
+                </div>
             </div>
         );
     }
