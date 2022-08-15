@@ -15,12 +15,36 @@ class Blog extends Component {
             blogItems: [],
             totalCount: 0,
             currentPage: 0,
-            isLoading: true
+            isLoading: true, 
+            blogModalIsOpen: false
         };
 
         this.getBlogItems = this.getBlogItems.bind(this);
         this.onScroll = this.onScroll.bind(this);
         window.addEventListener("scroll", this.onScroll, false);
+        this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
+        this.handleModalClose = this.handleModalClose.bind(this);
+        this.handleSuccessfullNewBlogSubmission = this.handleSuccessfullNewBlogSubmission.bind(this);
+    }
+
+    handleSuccessfullNewBlogSubmission(blog) {
+        
+        this.setState({
+            blogModalIsOpen: false,
+        blogItems: [blog].concat(this.state.blogItems)
+       }); 
+    }
+
+    handleModalClose() {
+        this.setState({
+          blogModalIsOpen: false
+        });
+    }
+
+    handleNewBlogClick() {
+        this.setState({
+            blogModalIsOpen: true
+        });
     }
 
     onScroll() {
@@ -73,7 +97,21 @@ class Blog extends Component {
 
         return (
             <div className='blog-container'>
-               <BlogModal/> 
+               <BlogModal 
+               handleSuccessfullNewBlogSubmission={this.handleSuccessfullNewBlogSubmission}
+               handleModalClose={this.handleModalClose}
+               modalIsOpen={this.state.blogModalIsOpen} /> 
+
+
+                {this.props.loggedInStatus === "LOGGED_IN" ?
+                <div className='new-blog-link'>
+                <a onClick={this.handleNewBlogClick}>
+                   <FontAwesomeIcon icon= "fa-feather" />
+                </a>
+                </div> : null}
+
+
+
                 <div className='content-container'> {blogRecords} </div>
                 
                  {this.state.isLoading ? (     
